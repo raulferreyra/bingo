@@ -1,12 +1,6 @@
 <template>
   <div class="min-h-screen flex items-center justify-center px-4">
     <div class="w-full max-w-5xl mx-auto">
-      <header class="text-center mb-6">
-        <h1 class="text-3xl font-extrabold tracking-[0.3em] mb-2">
-          B I N G O
-        </h1>
-      </header>
-
       <main class="bg-slate-800/70 rounded-2xl shadow-xl p-4 sm:p-6">
         <!-- Principal Board -->
         <div class="overflow-x-auto">
