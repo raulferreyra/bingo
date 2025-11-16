@@ -72,6 +72,15 @@ const isSpinning = ref(false)
 const showModal = ref(false)
 const modalNumber = ref(null)
 
+function buildShuffledNumbers() {
+  const arr = Array.from({ length: 75 }, (_, i) => i + 1)
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+      ;[arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+  return arr
+}
+
 function initBoard() {
   const data = {}
   for (const col of columns) {
@@ -82,7 +91,7 @@ function initBoard() {
     data[col.key] = cells
   }
   board.value = data
-  availableNumbers.value = Array.from({ length: 75 }, (_, i) => i + 1)
+  availableNumbers.value = buildShuffledNumbers()
   currentHighlightNumber.value = null
   showModal.value = false
   modalNumber.value = null
@@ -117,10 +126,9 @@ async function handleNext() {
   isSpinning.value = true
 
   const pool = [...availableNumbers.value]
-  const target =
-    pool[Math.floor(Math.random() * pool.length)]
+  const target = pool[0]
 
-  const baseDelays = [50, 90, 130]
+  const baseDelays = [40, 70, 100]
 
   for (const delay of baseDelays) {
     for (const num of pool) {
@@ -133,7 +141,7 @@ async function handleNext() {
   if (cursorIndex === -1) cursorIndex = 0
 
   const finalSequence = []
-  const extraCycles = 12
+  const extraCycles = 6
 
   for (let i = 0; i < extraCycles; i++) {
     cursorIndex = (cursorIndex + 1) % pool.length
@@ -145,8 +153,8 @@ async function handleNext() {
     finalSequence.push(pool[cursorIndex])
   }
 
-  let stepDelay = 160
-  const stepIncrement = 40
+  let stepDelay = 110
+  const stepIncrement = 25
 
   for (const num of finalSequence) {
     currentHighlightNumber.value = num
@@ -160,9 +168,7 @@ async function handleNext() {
 
   markNumberOnBoard(target)
 
-  availableNumbers.value = availableNumbers.value.filter(
-    n => n !== target
-  )
+  availableNumbers.value = availableNumbers.value.slice(1)
 
   await sleep(6000)
   showModal.value = false
@@ -178,6 +184,7 @@ onMounted(() => {
   initBoard()
 })
 </script>
+
 
 <style scoped>
 .bingo-header {
