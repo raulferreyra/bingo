@@ -13,23 +13,6 @@
                 <th class="py-2 px-2 sm:px-4 bg-slate-700 rounded-lg">G</th>
                 <th class="py-2 px-2 sm:px-4 bg-slate-700 rounded-lg">O</th>
               </tr>
-              <tr class="text-xs sm:text-sm text-slate-300">
-                <th class="pb-2">
-                  1 – 15
-                </th>
-                <th class="pb-2">
-                  16 – 30
-                </th>
-                <th class="pb-2">
-                  31 – 45
-                </th>
-                <th class="pb-2">
-                  46 – 60
-                </th>
-                <th class="pb-2">
-                  61 – 75
-                </th>
-              </tr>
             </thead>
             <tbody>
               <!-- Next steps the grids -->
