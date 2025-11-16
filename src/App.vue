@@ -1,46 +1,27 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-slate-950">
     <div class="w-full max-w-[1600px] px-14 py-10">
-      
+
       <main class="bg-slate-900/95 rounded-3xl shadow-2xl px-14 py-10">
 
-        <!-- Cabecera B I N G O -->
         <div class="flex justify-between mb-10">
-          <div
-            v-for="col in columns"
-            :key="col.key"
-            class="flex flex-col items-center flex-1"
-          >
-            <div
-              class="bingo-header"
-            >
+          <div v-for="col in columns" :key="col.key" class="flex flex-col items-center flex-1">
+            <div class="bingo-header">
               {{ col.key }}
             </div>
           </div>
         </div>
 
-
-        <!-- Tablero en columnas -->
         <div class="flex justify-between gap-12">
-          <div
-            v-for="col in columns"
-            :key="col.key + '-grid'"
-            class="flex-1 flex flex-col items-center"
-          >
+          <div v-for="col in columns" :key="col.key + '-grid'" class="flex-1 flex flex-col items-center">
             <div class="grid grid-cols-3 gap-5">
-              <div
-                v-for="cell in (board[col.key] || [])"
-                :key="cell.number"
-                class="bingo-cell"
-              >
+              <div v-for="cell in (board[col.key] || [])" :key="cell.number" class="bingo-cell">
                 {{ cell.number }}
               </div>
             </div>
           </div>
         </div>
 
-
-        <!-- Controles -->
         <div class="mt-14 flex justify-center gap-6">
           <button class="btn-next" disabled>
             Siguiente
@@ -70,7 +51,7 @@ const columns = [
 
 const board = ref({})
 
-function initBoard () {
+function initBoard() {
   const data = {}
 
   for (const col of columns) {
@@ -89,8 +70,6 @@ onMounted(() => {
 })
 </script>
 
-
-<!-- 🎨 ESTILOS EXCLUSIVOS PARA MEJOR VISIBILIDAD EN PANTALLA GRANDE -->
 <style scoped>
 .bingo-header {
   font-size: 2.8rem;
@@ -102,7 +81,7 @@ onMounted(() => {
   border-radius: 18px;
   text-align: center;
   min-width: 130px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .range-label {
