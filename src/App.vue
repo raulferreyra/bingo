@@ -129,7 +129,7 @@ async function handleNext() {
   const target = pool[0]
 
   // Faster base loops (3 full passes)
-  const baseDelays = [15, 25, 35]
+  const baseDelays = [8, 15, 20]
 
   for (const delay of baseDelays) {
     for (const num of pool) {
@@ -142,7 +142,7 @@ async function handleNext() {
   if (cursorIndex === -1) cursorIndex = 0
 
   const finalSequence = []
-  const extraCycles = 4
+  const extraCycles = 2
 
   for (let i = 0; i < extraCycles; i++) {
     cursorIndex = (cursorIndex + 1) % pool.length
@@ -155,8 +155,8 @@ async function handleNext() {
   }
 
   // Faster but still decelerating at the end
-  let stepDelay = 60
-  const stepIncrement = 8
+  let stepDelay = 120
+  const stepIncrement = 10
 
   for (const num of finalSequence) {
     currentHighlightNumber.value = num
